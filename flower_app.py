@@ -30,19 +30,35 @@ st.sidebar.header('User Input Parameters')
 df = user_input_features()
 
 #---------------------------------#
+# Read Dataset & Train
+iris = datasets.load_iris()
+X = iris.data
+Y = iris.target
+
+clf = RandomForestClassifier()
+clf.fit(X, Y)
+
+#---------------------------------#
+# Run Predictions with selected data as input
+prediction = clf.predict(df)
+prediction_proba = clf.predict_proba(df)
+
+#---------------------------------#
 # Displaying data
 st.subheader('User Input parameters')
 st.write(df)
 
-#---------------------------------#
-
 st.subheader('Class labels and their corresponding index number')
-st.write("#Placeholder")
+st.write(iris.target_names)
 
 st.subheader('Prediction')
-st.write("#Placeholder")
+st.write(iris.target_names[prediction])
 #st.write(prediction)
 
 st.subheader('Prediction Probability')
-st.write("#Placeholder")
+st.write(prediction_proba)
+
+#---------------------------------#
+
+
 
